@@ -26,32 +26,45 @@ const Button = styled.button`
         background:grey;
     }
 `;
-function FriendForm(){
+class FriendForm extends React.Component {
+    
+    handleSubmit = e => {
+        e.preventDefault();
+        this.props.addFriend();
+    };
+    render() {
         return (
-        <div className = 'friendform'>
-            <Form>
-                <Input
-                    type = 'text'
-                    name = 'name'
-                    placeholder = 'Name'
-                    > 
-                </Input>
-                <Input
-                    type = 'text'
-                    name = 'age'
-                    placeholder = 'Age'
-                    > 
-                </Input>
-                <Input
-                    type = 'text'
-                    name = 'email'
-                    placeholder = 'E-mail'
-                    > 
-                </Input>
-                
-            </Form>
-            <Button>Add</Button>
-        </div>
-    )
+            <div className='friendform'>
+                <Form onSubmit={this.handleSubmit}>
+                    <Input
+                        type='text'
+                        name='name'
+                        placeholder='Name'
+                        value={this.props.newfriend.name}
+                        onChange={this.props.onChange}
+                    >
+                    </Input>
+                    <Input
+                        type='text'
+                        name='age'
+                        placeholder='Age'
+                        value={this.props.newfriend.age}
+                        onChange={this.props.onChange}
+                    >
+                    </Input>
+                    <Input
+                        type='text'
+                        name='email'
+                        placeholder='E-mail'
+                        value={this.props.newfriend.email}
+                        onChange={this.props.onChange}
+                    >
+                    </Input>
+                    <Button>Add</Button>
+
+                </Form>
+            </div>
+        )
+    }
 }
 export default FriendForm

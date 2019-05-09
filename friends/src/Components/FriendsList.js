@@ -14,27 +14,11 @@ margin: 30px 0;
 `;
 
 class FriendsList extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            friends: []
-        };
-    }
 
-    componentDidMount() {
-        axios
-            .get('http://localhost:5000/friends')
-            .then(res => {
-                this.setState({ friends: res.data });
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
     render() {
         return (
             <List>
-                {this.state.friends.map(friend => (
+                {this.props.friends.map(friend => (
                     <Card>
                         <p>{friend.name}</p>
                         <p>{friend.age}</p>
