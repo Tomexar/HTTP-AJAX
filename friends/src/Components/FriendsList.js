@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import Friend from './Friend';
 
 const List = styled.div`
     display:flex;
@@ -13,32 +14,25 @@ width: 200px;
 margin: 30px 0;
 `;
 
-class FriendsList extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            friends: []
-        };
-    }
 
-    componentDidMount() {
-        axios
-            .get('http://localhost:5000/friends')
-            .then(res => {
-                this.setState({ friends: res.data });
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
+
+class FriendsList extends React.Component {
+    
+
+    handleDelete = id => {
+        this.props.deleteFriend(id);
+    };
+
+
     render() {
         return (
             <List>
-                {this.state.friends.map(friend => (
+                {this.props.friends.map(friend => (
                     <Card>
-                        <p>{friend.name}</p>
+                        <p>{friend.name}</p>                        
                         <p>{friend.age}</p>
                         <p>{friend.email}</p>
+                        <button onClick={() => this.handleDelete(friend.id)} >Delete</button>
                     </Card>
                 ))}
             </List>
