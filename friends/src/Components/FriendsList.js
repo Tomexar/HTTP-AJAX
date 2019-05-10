@@ -19,9 +19,8 @@ margin: 30px 0;
 class FriendsList extends React.Component {
     
 
-    handleDelete = e => {
-        e.preventDefault();
-        this.props.deleteFriend(this.props.id);
+    handleDelete = id => {
+        this.props.deleteFriend(id);
     };
 
 
@@ -33,7 +32,7 @@ class FriendsList extends React.Component {
                         <p>{friend.name}</p>                        
                         <p>{friend.age}</p>
                         <p>{friend.email}</p>
-                        <button onClick ={this.handleDelete} >Delete</button>
+                        <button onClick={() => this.handleDelete(friend.id)} >Delete</button>
                     </Card>
                 ))}
             </List>
